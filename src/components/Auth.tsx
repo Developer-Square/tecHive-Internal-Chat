@@ -4,13 +4,29 @@ import axios from 'axios';
 
 import SigninImage from '../assets/signup.jpg';
 
+const initialState = {
+  fullName: '',
+  userName: '',
+  phoneNumber: '',
+  avatarURL: '',
+  password: '',
+  confirmPassword: '',
+};
+
 const Auth = () => {
+  const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(true);
 
-  const handleChange = () => {};
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
   };
 
   return (
@@ -18,7 +34,7 @@ const Auth = () => {
       <div className='auth__form-container_fields'>
         <div className='auth__form-container_fields-content'>
           <p>{isSignup ? 'Sign up' : 'Sign in'}</p>
-          <form onSubmit={() => {}}>
+          <form onSubmit={handleSubmit}>
             {isSignup ? (
               <div className='auth__form-container_fields-content_input'>
                 <label htmlFor='fullName'>Full Name</label>
@@ -93,6 +109,11 @@ const Auth = () => {
             ) : (
               <></>
             )}
+            <div className='auth__form-container_fields-content_button'>
+              <button onClick={handleSubmit}>
+                {isSignup ? 'Sign Up' : 'Sign In'}
+              </button>
+            </div>
           </form>
           <div className='auth__form-container_fields-account'>
             <p>
