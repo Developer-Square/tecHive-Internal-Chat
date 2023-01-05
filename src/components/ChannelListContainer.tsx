@@ -6,6 +6,8 @@ import Cookies from 'universal-cookie';
 import { IoIosBusiness } from 'react-icons/io';
 import LogoutIcon from '../assets/logout.png';
 import ChannelSearch from './ChannelSearch';
+import TeamChannelList from './TeamChannelList';
+import TeamChannelPreview from './TeamChannelPreview';
 
 const SideBar = () => (
   <div className='channel-list__sidebar'>
@@ -35,6 +37,22 @@ const ChannelListContainer = () => {
       <div className='channel-list__list__wrapper'>
         <CompanyHeader />
         <ChannelSearch />
+        <ChannelList
+          filters={{}}
+          List={(listProps) => <TeamChannelList {...listProps} type='team' />}
+          Preview={(previewProps) => (
+            <TeamChannelPreview {...previewProps} type='team' />
+          )}
+        />
+        <ChannelList
+          filters={{}}
+          List={(listProps) => (
+            <TeamChannelList {...listProps} type='messaging' />
+          )}
+          Preview={(previewProps) => (
+            <TeamChannelPreview {...previewProps} type='messaging' />
+          )}
+        />
       </div>
     </>
   );

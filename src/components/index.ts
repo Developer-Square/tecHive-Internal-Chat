@@ -1,4 +1,5 @@
 import ChannelContainer from './ChannelContainer';
 import ChannelListContainer from './ChannelListContainer';
+import TeamChannelList from './TeamChannelList';
 
-export { ChannelContainer, ChannelListContainer };
+export { ChannelContainer, ChannelListContainer, TeamChannelList };
