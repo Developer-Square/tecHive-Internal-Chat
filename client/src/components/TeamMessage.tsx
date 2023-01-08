@@ -32,8 +32,6 @@ import {
 
 import { PinIndicator } from './PinIndicator';
 
-import { useWorkspaceController } from '../context/WorkspaceController';
-
 import type { StreamChatType } from '../types';
 
 type MessageTeamWithContextProps = MessageContextValue<StreamChatType> & {
@@ -298,7 +296,6 @@ const MemoizedMessageTeam = React.memo(
 
 export const TeamMessage = (props: MessageUIComponentProps<StreamChatType>) => {
   const messageContext = useMessageContext<StreamChatType>('MessageTeam');
-  const { closePinnedMessageListOpen } = useWorkspaceController();
 
   const reactionSelectorRef = useRef<HTMLDivElement | null>(null);
   const messageWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -309,7 +306,6 @@ export const TeamMessage = (props: MessageUIComponentProps<StreamChatType>) => {
     useReactionClick(message, reactionSelectorRef, messageWrapperRef);
 
   const handleOpenThreadOverride = (event: React.BaseSyntheticEvent) => {
-    closePinnedMessageListOpen();
     messageContext.handleOpenThread(event);
   };
 

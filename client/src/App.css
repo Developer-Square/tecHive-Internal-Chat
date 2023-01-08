@@ -224,6 +224,10 @@ body {
 	cursor: pointer;
 }
 
+.str-chat__message, .str-chat__message-simple {
+	align-items: flex-start !important;
+}
+
 @media screen and (max-width: 960px) {
 	.str-chat-channel-list.team.light {
 		position: unset;
@@ -1068,6 +1072,7 @@ body {
 .str-chat__message-team-meta {
 	justify-content: flex-start;
 	align-items: center;
+	flex-direction: row !important;
 }
 
 .str-chat__message-team--bottom time {
@@ -1087,13 +1092,14 @@ body {
 	font-size: 10px;
 	color: #858688;
 	margin-top: 4px;
+	margin-bottom: 0px !important;
 }
 
 .str-chat__message-team-author strong {
 	font-family: Helvetica Neue, sans-serif;
 	font-style: normal;
-	font-weight: 500;
-	font-size: 11px;
+	font-weight: 600;
+	font-size: 14px;
 	line-height: 120%;
 	color: #858688;
 	margin: 0;
