@@ -26,10 +26,10 @@ const TeamChannelPreview = ({ channel, type }: IProps) => {
       <div className='channel-preview__item single'>
         <Avatar
           image={members[0]?.user?.image}
-          name={members[0]?.user?.name}
+          name={members[0]?.user?.name || members[0]?.user?.id}
           size={24}
         />
-        <p>{members[0]?.user?.name}</p>
+        <p>{members[0]?.user?.name || members[0]?.user?.id}</p>
       </div>
     );
   };

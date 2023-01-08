@@ -13,6 +13,8 @@ const initialState = {
   confirmPassword: '',
 };
 
+const cookies = new Cookies();
+
 const Auth = () => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(true);
@@ -25,8 +27,33 @@ const Auth = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    const { fullName, userName, phoneNumber, password, avatarURL } = form;
+    const URL = process.env.REACT_APP_BACKEND_URL;
+    const {
+      data: { token, userId, hashedPassword },
+    } = await axios.post(`${URL}/auth/${isSignup ? 'signup' : 'login'}`, {
+      fullName,
+      userName,
+      phoneNumber,
+      password,
+      avatarURL,
+    });
+
+    cookies.set('token', token);
+    cookies.set('fullName', fullName);
+    cookies.set('userName', userName);
+    cookies.set('userId', userId);
+
+    if (isSignup) {
+      cookies.set('phoneNumber', phoneNumber);
+      cookies.set('avatarURL', avatarURL);
+      cookies.set('hashedPassword', hashedPassword);
+    }
+
+    window.location.reload();
   };
 
   return (
