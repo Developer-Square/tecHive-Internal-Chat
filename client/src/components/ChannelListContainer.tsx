@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 
@@ -10,6 +10,13 @@ import TeamChannelList from './TeamChannelList';
 import TeamChannelPreview from './TeamChannelPreview';
 
 const cookies = new Cookies();
+
+interface IProps {
+  isCreating: boolean;
+  setIsCreating: Dispatch<SetStateAction<boolean>>;
+  setCreateType: Dispatch<SetStateAction<string>>;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+}
 
 const SideBar = ({ logout }: { logout: () => void }) => (
   <div className='channel-list__sidebar'>
@@ -32,7 +39,12 @@ const CompanyHeader = () => (
   </div>
 );
 
-const ChannelListContainer = () => {
+const ChannelListContainer = ({
+  isCreating,
+  setIsCreating,
+  setCreateType,
+  setIsEditing,
+}: IProps) => {
   const logout = () => {
     cookies.remove('token');
     cookies.remove('fullName');
