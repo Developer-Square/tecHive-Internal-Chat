@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { APIErrorResponse, ErrorFromResponse } from 'stream-chat';
 
 import { AddChannel } from '../assets';
@@ -8,9 +8,22 @@ interface IProps {
   loading?: boolean;
   error?: ErrorFromResponse<APIErrorResponse> | null;
   type?: string;
+  isCreating: boolean;
+  setIsCreating: Dispatch<SetStateAction<boolean>>;
+  setCreateType: Dispatch<SetStateAction<string>>;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
 }
 
-const TeamChannelList = ({ children, loading, error, type }: IProps) => {
+const TeamChannelList = ({
+  children,
+  loading,
+  error,
+  type,
+  isCreating,
+  setCreateType,
+  setIsCreating,
+  setIsEditing,
+}: IProps) => {
   if (error) {
     return type === 'team' ? (
       <div className='team-channel-list'>
@@ -37,7 +50,13 @@ const TeamChannelList = ({ children, loading, error, type }: IProps) => {
         <p className='team-channel-list__header__title'>
           {type === 'team' ? 'Channels' : 'Direct Messages'}
         </p>
-        {/* Button - add channel */}
+        <AddChannel
+          isCreating={isCreating}
+          setIsCreating={setIsCreating}
+          setCreateType={setCreateType}
+          setIsEditing={setIsEditing}
+          type={type === 'team' ? 'team' : 'messaging'}
+        />
       </div>
       {children}
     </div>

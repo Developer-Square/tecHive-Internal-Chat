@@ -67,7 +67,16 @@ const ChannelListContainer = ({
           filters={{}}
           // @ts-ignore
           channelRenderFilterFn={() => {}}
-          List={(listProps) => <TeamChannelList {...listProps} type='team' />}
+          List={(listProps) => (
+            <TeamChannelList
+              isCreating={isCreating}
+              setIsCreating={setIsCreating}
+              setCreateType={setCreateType}
+              setIsEditing={setIsEditing}
+              {...listProps}
+              type='team'
+            />
+          )}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type='team' />
           )}
@@ -77,7 +86,14 @@ const ChannelListContainer = ({
           // @ts-ignore
           channelRenderFilterFn={() => {}}
           List={(listProps) => (
-            <TeamChannelList {...listProps} type='messaging' />
+            <TeamChannelList
+              isCreating={isCreating}
+              setIsCreating={setIsCreating}
+              setCreateType={setCreateType}
+              setIsEditing={setIsEditing}
+              {...listProps}
+              type='messaging'
+            />
           )}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type='messaging' />

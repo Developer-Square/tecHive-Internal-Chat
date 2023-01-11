@@ -1095,6 +1095,10 @@ body {
 	margin-bottom: 0px !important;
 }
 
+.str-chat__channel-list {
+	background: initial !important;
+}
+
 .str-chat__message-team-author strong {
 	font-family: Helvetica Neue, sans-serif;
 	font-style: normal;
