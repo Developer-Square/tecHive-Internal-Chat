@@ -42,6 +42,26 @@ const CreateChannel = ({ setIsCreating, createType, setIsEditing }: IProps) => {
   const [channelName, setchannelName] = useState('');
   const [selectedUsers, setselectedUsers] = useState([client.userID || '']);
 
+  const createChannel = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    try {
+      const newChannel = await client.channel(createType, channelName, {
+        name: channelName,
+        members: selectedUsers,
+      });
+
+      await newChannel.watch();
+
+      setchannelName('');
+      setselectedUsers([client.userID || '']);
+      setIsCreating(false);
+      setActiveChannel(newChannel);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className='create-channel__container'>
       <div className='create-channel__header'>
@@ -64,6 +84,11 @@ const CreateChannel = ({ setIsCreating, createType, setIsEditing }: IProps) => {
         <></>
       )}
       <UserList setselectedUsers={setselectedUsers} />
+      <div className='create-channel__button-wrapper' onClick={createChannel}>
+        <p>
+          {createType === 'team' ? 'Create Channel' : 'Create Message Group'}
+        </p>
+      </div>
     </div>
   );
 };

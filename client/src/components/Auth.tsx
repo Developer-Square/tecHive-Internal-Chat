@@ -30,12 +30,12 @@ const Auth = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { fullName, userName, phoneNumber, password, avatarURL } = form;
+    const { userName, phoneNumber, password, avatarURL } = form;
     const URL = process.env.REACT_APP_BACKEND_URL;
     const {
-      data: { token, userId, hashedPassword },
+      data: { token, userId, hashedPassword, fullName },
     } = await axios.post(`${URL}/auth/${isSignup ? 'signup' : 'login'}`, {
-      fullName,
+      fullName: form.fullName,
       userName,
       phoneNumber,
       password,

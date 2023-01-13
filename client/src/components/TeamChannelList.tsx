@@ -8,10 +8,10 @@ interface IProps {
   loading?: boolean;
   error?: ErrorFromResponse<APIErrorResponse> | null;
   type?: string;
-  isCreating: boolean;
   setIsCreating: Dispatch<SetStateAction<boolean>>;
   setCreateType: Dispatch<SetStateAction<string>>;
   setIsEditing: Dispatch<SetStateAction<boolean>>;
+  setToggleContainer: Dispatch<SetStateAction<boolean>> | undefined;
 }
 
 const TeamChannelList = ({
@@ -19,10 +19,10 @@ const TeamChannelList = ({
   loading,
   error,
   type,
-  isCreating,
   setCreateType,
   setIsCreating,
   setIsEditing,
+  setToggleContainer,
 }: IProps) => {
   if (error) {
     return type === 'team' ? (
@@ -51,11 +51,11 @@ const TeamChannelList = ({
           {type === 'team' ? 'Channels' : 'Direct Messages'}
         </p>
         <AddChannel
-          isCreating={isCreating}
           setIsCreating={setIsCreating}
           setCreateType={setCreateType}
           setIsEditing={setIsEditing}
           type={type === 'team' ? 'team' : 'messaging'}
+          setToggleContainer={setToggleContainer}
         />
       </div>
       {children}

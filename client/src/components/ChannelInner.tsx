@@ -37,7 +37,7 @@ const TeamChannelHeader = ({ setIsEditing }: IProps) => {
                 size={32}
               />
               <p className='team-channel-header__name user'>
-                {`${user?.fullName || user?.id}`}
+                {`${user?.name || user?.id}`}
               </p>
             </div>
           ))}

@@ -6,7 +6,6 @@ interface IProps {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setToggleContainer?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
-  isCreating: boolean;
 }
 
 export const AddChannel = ({

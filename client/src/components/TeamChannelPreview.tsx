@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Channel } from 'stream-chat';
 import { Avatar, useChatContext } from 'stream-chat-react';
 import { DefaultStreamChatGenerics } from 'stream-chat-react/dist/types/types';
 
 interface IProps {
   channel: Channel<DefaultStreamChatGenerics>;
+  setIsCreating: Dispatch<SetStateAction<boolean>>;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+  setToggleContainer: Dispatch<SetStateAction<boolean>> | undefined;
   type: string;
 }
 
-const TeamChannelPreview = ({ channel, type }: IProps) => {
-  const { channel: activeChannel, client } = useChatContext();
+const TeamChannelPreview = ({
+  channel,
+  type,
+  setIsCreating,
+  setIsEditing,
+  setToggleContainer,
+}: IProps) => {
+  const { channel: activeChannel, client, setActiveChannel } = useChatContext();
 
   const ChannelPreview = () => (
     <p className='channel-preview__item'>
@@ -42,7 +51,13 @@ const TeamChannelPreview = ({ channel, type }: IProps) => {
           : 'channel-preview__wrapper'
       }
       onClick={() => {
-        console.log(channel);
+        setIsCreating(false);
+        setIsEditing(false);
+        setActiveChannel(channel);
+
+        if (setToggleContainer) {
+          setToggleContainer((prevState) => !prevState);
+        }
       }}
     >
       {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
