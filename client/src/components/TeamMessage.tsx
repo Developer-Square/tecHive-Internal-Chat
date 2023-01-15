@@ -93,6 +93,8 @@ const MessageTeamWithContext = (props: MessageTeamWithContextProps) => {
     return <MessageDeleted message={message} />;
   }
 
+  console.log(message);
+
   if (editing) {
     return (
       <div

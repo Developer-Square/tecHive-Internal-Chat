@@ -70,10 +70,7 @@ const CreateChannel = ({ setIsCreating, createType, setIsEditing }: IProps) => {
             ? 'Create a New Channel'
             : 'Send a Direct Message'}
         </p>
-        <CloseCreateChannel
-          setIsCreating={setIsCreating}
-          setIsEditing={setIsEditing}
-        />
+        <CloseCreateChannel setIsEditing={setIsEditing} />
       </div>
       {createType === 'team' ? (
         <ChannelNameInput

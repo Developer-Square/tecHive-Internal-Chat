@@ -7,6 +7,7 @@ import { TeamMessage } from './TeamMessage';
 import EditChannel from './EditChannel';
 import CreateChannel from './CreateChannel';
 import ChannelInner from './ChannelInner';
+import UserList from './UserList';
 
 export {
   ChannelContainer,
@@ -18,4 +19,5 @@ export {
   EditChannel,
   CreateChannel,
   ChannelInner,
+  UserList,
 };
