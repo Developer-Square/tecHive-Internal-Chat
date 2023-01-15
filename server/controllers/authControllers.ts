@@ -50,7 +50,7 @@ const login = async (req, res) => {
       res.status(200).json({
         token,
         fullName: users[0].fullName,
-        username,
+        username: users[0].username,
         phoneNumber: users[0].phoneNumber,
         userId: users[0].id,
       });

@@ -8,6 +8,7 @@ import EditChannel from './EditChannel';
 import CreateChannel from './CreateChannel';
 import ChannelInner from './ChannelInner';
 import UserList from './UserList';
+import ResultsDropdown from './ResultsDropdown';
 
 export {
   ChannelContainer,
@@ -20,4 +21,5 @@ export {
   CreateChannel,
   ChannelInner,
   UserList,
+  ResultsDropdown,
 };
