@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Channel, useChatContext } from 'stream-chat-react';
+import { Channel } from 'stream-chat-react';
 
 import { ChannelInner, EditChannel, CreateChannel, TeamMessage } from './';
 
@@ -18,8 +18,6 @@ const ChannelContainer = ({
   isEditing,
   setIsEditing,
 }: IProps) => {
-  const { channel } = useChatContext();
-
   if (isCreating) {
     return (
       <div className='channel__container'>

@@ -89,6 +89,7 @@ const UserList = ({
     };
 
     if (client) getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) {
